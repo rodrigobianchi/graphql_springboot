@@ -1,0 +1,76 @@
+mutation($person: PersonInput) {
+  savePerson(person:$person) {
+    id
+    name
+    age
+    gender
+  }
+}
+
+{
+  "person": {
+    "name": "Rodrigo",
+    "age": 35,
+    "gender": "MALE"
+  }
+}
+
+mutation {
+  updateAge(personId: 1, age: 34) {
+    id
+    name
+    age
+    gender
+  }
+}
+
+query {
+  findAllPeople {
+    id
+    name
+    age
+	pets {
+      name
+    }
+  }
+}
+
+query {
+  findPersonById(id:1) {
+    id
+    name
+  }
+}
+
+
+--------------------------------------------------
+
+mutation($pet: PetInput) {
+  savePet(pet:$pet) {
+    id
+    name
+  }
+}
+
+{
+  "pet": {
+    "name": "Gamora",
+    "ownerId": 1
+  }
+}
+
+query {
+  findAllPets {
+    id
+    name
+  }
+}
+
+--------------------------------------------------
+
+subscription {
+  onPersonUpdated(personId: 1) {
+    name
+    age
+  }
+}
